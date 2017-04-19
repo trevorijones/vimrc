@@ -118,6 +118,15 @@ You can also install your plugins, for instance, via pathogen you can install [v
 	cd ~/.vim_runtime
 	git clone git://github.com/tpope/vim-rails.git sources_non_forked/vim-rails
 
+You can also use a .gitmodules file to initialize the plugins. Then issue a git submodule update --init 
+
+```
+[submodule "sources_non_forked/supertab"]
+	path = sources_non_forked/supertab
+	url = https://github.com/ervandew/supertab
+
+```
+
 
 ## Key Mappings
 
