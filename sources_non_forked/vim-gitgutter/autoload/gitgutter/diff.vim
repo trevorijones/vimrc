@@ -4,7 +4,10 @@ if exists('g:gitgutter_grep_command')
 else
   let s:grep_available = executable('grep')
   if s:grep_available
-    let s:grep_command = 'grep --color=never -e'
+    let s:grep_command = 'grep'
+    if $GREP_OPTIONS =~# '--color=always'
+      let s:grep_command .= ' --color=never'
+    endif
   endif
 endif
 let s:hunk_re = '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@'
@@ -85,7 +88,10 @@ function! gitgutter#diff#run_diff(realtime, preserve_full_diff) abort
     let op_mark_start = getpos("'[")
     let op_mark_end   = getpos("']")
 
+    let current_buffer = bufnr('')
+    execute 'buffer '.bufnr
     execute 'keepalt noautocmd silent write!' buff_file
+    execute 'buffer '.current_buffer
 
     call setbufvar(bufnr, "&mod", modified)
     call setpos("'[", op_mark_start)
