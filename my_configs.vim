@@ -1,3 +1,7 @@
+" To investigate: The value of LANG is different from the shell session.
+" Under Cygwin it's set to 'en', totaly ignoring the en_US from the shell session.
+let $LANG='en_US'
+
 set wildignore+=*/target/*
 map <leader>v :e ~/.vim_runtime/my_configs.vim<cr>
 let g:syntastic_javascript_checkers = ['eslint']
@@ -15,6 +19,9 @@ let g:syntastic_check_on_wq = 0
 
 map <leader>ln :lnext<cr>
 map <leader>lp :lprevious<cr>
+
+
+
 
 "surround word 
 map <leader>q" ciw""<Esc>P
@@ -44,3 +51,5 @@ autocmd BufNewFile * echo "This is a new file buffer!"
 " <sfile> is expanded at the definition of the command
 " <cword> is expended at command execution
 " au BufNewFile,BufRead *.html so <sfile>:h/html.vim
+
+au BufNewFile,BufRead .module set filetype=sh

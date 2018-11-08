@@ -257,6 +257,8 @@ Surround the visual selection in parenthesis/brackets/etc.:
 
 ### Insert mode mappings
 
+Note: changing mapping prefix to  in insert mode. 
+
 Quickly insert parenthesis/brackets/etc.:
 
     inoremap $1 ()<esc>i
