@@ -10,6 +10,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" CtrlP - show hidden
+let g:ctrlp_show_hidden = 1
+
 " not working on linux
 "set clipboard=unnamed
 
