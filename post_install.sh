@@ -1,11 +1,9 @@
 install_global_go() {
-  (
-    sudo su
-    cd /tmp
-    wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
-    gzip -cd go1.11.linux-amd64.tar.gz | tar -C /usr/local -xf -
-    rm go*tar.gz
-  )
+  local -; set -x
+  sudo bash -c "cd /tmp;\
+    wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz;\
+    gzip -cd go1.11.linux-amd64.tar.gz | tar -C /usr/local -xf -;\
+    rm go*tar.gz"
 }
 
 install_local_shfmt() {
@@ -17,3 +15,6 @@ install_local_shfmt() {
     go get -u mvdan.cc/sh/v3/cmd/shfmt
   )
 }
+
+go version || install_global_go
+install_local_shfmt
