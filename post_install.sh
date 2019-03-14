@@ -33,3 +33,5 @@ go version || install_global_go
 install_local_shfmt
 install_shellcheck
 install_java_checkstyle
+sudo pip install requests
+./update_plugins.py
