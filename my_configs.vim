@@ -1,6 +1,18 @@
 " To investigate: The value of LANG is different from the shell session.
 " Under Cygwin it's set to 'en', totaly ignoring the en_US from the shell session.
+"
+" Pb section:
+" How to put after a word with an extra space after the word
+"
+"
 let $LANG='en_US'
+
+set expandtab
+set sw=2
+set tabstop=2
+
+set relativenumber
+set showcmd
 
 set wildignore+=*/target/*
 map <leader>v :e ~/.vim_runtime/my_configs.vim<cr>
