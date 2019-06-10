@@ -7,39 +7,12 @@
 "
 let $LANG='en_US'
 
-set expandtab
-set sw=2
-set tabstop=2
 
-set relativenumber
-set showcmd
-
-set wildignore+=*/target/*
+" Open this file
 map <leader>v :e ~/.vim_runtime/my_configs.vim<cr>
-let g:syntastic_javascript_checkers = [ 'eslint' ]
-let g:syntastic_java_checkers = [ 'checkstyle' ]
-let g:syntastic_java_checkstyle_classpath = '~/.vim_runtime/checkstyle-8.18-all.jar'
-let g:syntastic_java_checkstyle_conf_file = '~/.vim_runtime/google_checks.xml'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-" CtrlP - show hidden
-let g:ctrlp_show_hidden = 1
-
-" not working on linux
-"set clipboard=unnamed
 
 map <leader>ln :lnext<cr>
 map <leader>lp :lprevious<cr>
-
-
-
 
 "surround word 
 map <leader>q" ciw""<Esc>P

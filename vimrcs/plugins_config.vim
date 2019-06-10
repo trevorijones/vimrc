@@ -13,15 +13,14 @@ call pathogen#infect(s:vim_runtime.'/sources_forked/{}')
 call pathogen#infect(s:vim_runtime.'/sources_non_forked/{}')
 "call pathogen#infect(s:vim_runtime.'/my_plugins/{}')
 "call pathogen#helptags()
+"
+"
+call plug#begin('~/.vim/plugged')
 
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerFindActive=1
-let g:bufExplorerSortBy='name'
-map <leader>o :BufExplorer<cr>
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+
+call plug#end()
 
 
 """"""""""""""""""""""""""""""
@@ -51,6 +50,9 @@ map <c-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+" show hidden
+
+let g:ctrlp_show_hidden = 1
 
 
 """"""""""""""""""""""""""""""
@@ -58,13 +60,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 """"""""""""""""""""""""""""""
 " Enable all functions in all modes
 let g:user_zen_mode='a'
-
-
-""""""""""""""""""""""""""""""
-" => snipMate (beside <TAB> support <CTRL-j>)
-""""""""""""""""""""""""""""""
-ino <c-j> <c-r>=snipMate#TriggerSnippet()<cr>
-snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -146,15 +141,30 @@ let g:go_fmt_command = "goimports"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 " Python
 let g:syntastic_python_checkers=['pyflakes']
 
 " Javascript
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
 " Go
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+
+" Java
+let g:syntastic_java_checkers = [ 'checkstyle' ]
+let g:syntastic_java_checkstyle_classpath = '~/.vim_runtime/checkstyle-8.18-all.jar'
+let g:syntastic_java_checkstyle_conf_file = '~/.vim_runtime/google_checks.xml'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+" Don't check on open or write file
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
 
 " Custom CoffeeScript SyntasticCheck
 func! SyntasticCheckCoffeescript()
@@ -171,3 +181,13 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1
+
+
+call glaive#Install()
+Glaive codefmt google_java_executable="java -jar /home/vagrant/.vim_runtime/google-java-format-1.7-all-deps.jar"

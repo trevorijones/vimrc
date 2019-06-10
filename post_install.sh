@@ -1,22 +1,6 @@
 #!/bin/bash
 VIM_RUNTIME_DIR="$(dirname "$(realpath $0)")"
 
-utils_curlsha256() {
-  local url=$1
-  local url_sha=$2
-  if [ "200" == "$(curl -L -s -w "%{http_code}" -O $url)" ]; then
-    if [ "200" == "$(curl -L -s -w "%{http_code}" -O $url_sha)" ]; then
-      grep ${url##*/} ${url_sha##*/} | sha256sum -c -
-    else
-      echo "Failed to fetch $url_sha"
-      return 1
-    fi
-  else
-    echo "Failed to fetch $url"
-    return 1
-  fi
-}
-
 install_global_go() {
   local -
   set -x
@@ -46,24 +30,16 @@ install_java_checkstyle() {
   curl --insecure -L -O https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml
 }
 
-install_node() {
-  local version=v8.11.2
-  local url_sha="https://nodejs.org/dist/${version}/SHASUMS256.txt"
-  local url="https://nodejs.org/dist/$version/node-${version}-linux-x64.tar.xz"
-
-  [ -d "$VIM_RUNTIME_DIR/opt" ] || mkdir "$VIM_RUNTIME_DIR/opt"
-  (cd "$VIM_RUNTIME_DIR/opt" &&
-    utils_curlsha256 $url $url_sha &&
-    tar Jxf node* && rm *.tar.xz SHASUMS* && mv node* node)
+install_java_formater() {
+  curl --insecure -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.7/google-java-format-1.7-all-deps.jar
 }
+
 
 # use to generate the node project
 install_node_utils() {
-  (
-    NODE_HOME="$VIM_RUNTIME_DIR/opt/node"
-    PATH="$PATH:$NODE_HOME/bin"
-    node $NODE_HOME/bin/npm install -g prettier
-  )
+  sudo apt-get install curl software-properties-common
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+  npm install -g prettier
 }
 
 if [ -n "$1" ]; then
@@ -76,6 +52,8 @@ else
   install_local_shfmt
   install_shellcheck
   install_java_checkstyle
+  install_java_formater
+  install_node_utils
   sudo pip install requests
   ./update_plugins.py
 
