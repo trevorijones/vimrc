@@ -3,9 +3,9 @@ temp_dirs/yankring_history_v2.txt
 sources_forked/yankring/doc/tags
 sources_non_forked/*
 opt/*
-
 my_configs.vim
 tags
 .DS_Store
 *.jar
 google_checks.xml
+autoload/plug.vim

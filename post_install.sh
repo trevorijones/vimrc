@@ -34,12 +34,15 @@ install_java_formater() {
   curl --insecure -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.7/google-java-format-1.7-all-deps.jar
 }
 
+install_vim_plug() {
+  curl -fLo autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
 
 # use to generate the node project
 install_node_utils() {
   sudo apt-get install curl software-properties-common
   curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
-  npm install -g prettier
+  sudo npm install -g prettier
 }
 
 if [ -n "$1" ]; then
@@ -49,6 +52,7 @@ if [ -n "$1" ]; then
 else
 
   go version || install_global_go
+  install_vim_plug
   install_local_shfmt
   install_shellcheck
   install_java_checkstyle
