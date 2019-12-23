@@ -49,7 +49,7 @@ map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\'
 " show hidden
 
 let g:ctrlp_show_hidden = 1
@@ -191,3 +191,4 @@ let g:vim_markdown_folding_disabled = 1
 
 call glaive#Install()
 Glaive codefmt google_java_executable="java -jar /home/vagrant/.vim_runtime/google-java-format-1.7-all-deps.jar"
+Glaive codefmt plugin[mappings]

@@ -38,6 +38,12 @@ au FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
 
 """"""""""""""""""""""""""""""
+" => json section
+""""""""""""""""""""""""""""""
+au FileType json set filetype=javascript
+
+
+""""""""""""""""""""""""""""""
 " => Shell section
 """"""""""""""""""""""""""""""
 if exists('$TMUX') 

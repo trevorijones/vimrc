@@ -43,6 +43,7 @@ install_node_utils() {
   sudo apt-get install curl software-properties-common
   curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
   sudo npm install -g prettier
+  sudo npm install -g coffeescript
 }
 
 if [ -n "$1" ]; then

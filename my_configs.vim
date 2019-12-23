@@ -7,6 +7,9 @@
 "
 let $LANG='en_US'
 
+" Add ** to path, makes find related comands recursive
+set path+=**
+
 
 " Open this file
 map <leader>v :e ~/.vim_runtime/my_configs.vim<cr>
